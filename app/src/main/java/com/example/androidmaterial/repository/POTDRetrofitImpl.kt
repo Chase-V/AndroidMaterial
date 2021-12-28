@@ -4,9 +4,9 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PictureOfTheDayRetrofitImpl {
+class POTDRetrofitImpl {
     private val baseUrl = "https://api.nasa.gov/"
-    fun getRetrofitImpl():PictureOfTheDayAPI{
+    fun getRetrofitImpl():POTDayAPI{
 
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
@@ -19,6 +19,6 @@ class PictureOfTheDayRetrofitImpl {
                     )
             )
             .build()
-        return retrofit.create(PictureOfTheDayAPI::class.java)
+        return retrofit.create(POTDayAPI::class.java)
     }
 }

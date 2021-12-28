@@ -12,10 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.androidmaterial.R
 import com.example.androidmaterial.databinding.PotdFragmentBinding
-import com.example.androidmaterial.viewModel.PictureOfTheDayState
-import com.example.androidmaterial.viewModel.PictureOfTheDayViewModel
+import com.example.androidmaterial.viewModel.POTDState
+import com.example.androidmaterial.viewModel.POTDViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class PictureOfTheDayFragment:Fragment() {
+class POTDFragment:Fragment() {
 
     private var _binding:PotdFragmentBinding?=null
     val  binding: PotdFragmentBinding
@@ -23,8 +24,8 @@ class PictureOfTheDayFragment:Fragment() {
         return _binding!!
     }
 
-    private val viewModel:PictureOfTheDayViewModel by lazy {
-        ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
+    private val viewModel:POTDViewModel by lazy {
+        ViewModelProvider(this).get(POTDViewModel::class.java)
     }
 
     override fun onDestroy() {
@@ -44,21 +45,22 @@ class PictureOfTheDayFragment:Fragment() {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
+        val bsBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
     }
 
-    private fun renderData(state:PictureOfTheDayState){
+    private fun renderData(state:POTDState){
         when(state){
-            is PictureOfTheDayState.Error -> {
+            is POTDState.Error -> {
                 //TODO()
             }
-            is PictureOfTheDayState.Loading -> {
+            is POTDState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
             }
-            is PictureOfTheDayState.Success -> {
+            is POTDState.Success -> {
                 val pictureOfTheDayResponseData = state.pictureOfTheDayResponseData
                 val url = pictureOfTheDayResponseData.url
                 binding.imageView.load(url){
-                    lifecycle(this@PictureOfTheDayFragment)
+                    lifecycle(this@POTDFragment)
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
                 }
@@ -77,7 +79,7 @@ class PictureOfTheDayFragment:Fragment() {
     }
 
     companion object{
-        fun newInstance() = PictureOfTheDayFragment()
+        fun newInstance() = POTDFragment()
     }
 
 }

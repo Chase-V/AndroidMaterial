@@ -2,7 +2,7 @@ package com.example.androidmaterial.repository
 
 import com.google.gson.annotations.SerializedName
 
-data class PictureOfTheDayResponseData(
+data class POTDResponseData(
     @field:SerializedName("copyright") val copyright: String?,
     @field:SerializedName("date") val date: String?,
     @field:SerializedName("explanation") val explanation: String?,
