@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.chips.ChipsFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Default"/>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipForDelete"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entry"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choice"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action"/>
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"/>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choice A" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choice B" />
+
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choice C" />
+    </com.google.android.material.chip.ChipGroup>
+
+
+</LinearLayout>

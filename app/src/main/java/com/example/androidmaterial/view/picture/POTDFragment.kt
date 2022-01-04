@@ -14,6 +14,7 @@ import com.example.androidmaterial.R
 import com.example.androidmaterial.databinding.PotdFragmentBinding
 import com.example.androidmaterial.view.BottomNavigationDrawerFragment
 import com.example.androidmaterial.view.MainActivity
+import com.example.androidmaterial.view.chips.ChipsFragment
 import com.example.androidmaterial.viewModel.POTDState
 import com.example.androidmaterial.viewModel.POTDViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -27,13 +28,13 @@ class POTDFragment : Fragment() {
             return _binding!!
         }
 
-    private val viewModel: POTDViewModel by lazy {
-        ViewModelProvider(this).get(POTDViewModel::class.java)
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private val viewModel: POTDViewModel by lazy {
+        ViewModelProvider(this).get(POTDViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,7 +78,7 @@ class POTDFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 //        return super.onCreateView(inflater, container, savedInstanceState)
         _binding = PotdFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -98,8 +99,10 @@ class POTDFragment : Fragment() {
         when (item.itemId) {
             R.id.appBarFav -> Toast.makeText(context, "Favourite selected", Toast.LENGTH_LONG)
                 .show()
-            R.id.appBarSettings -> Toast.makeText(context, "Settings selected", Toast.LENGTH_LONG)
-                .show()
+
+            R.id.appBarSettings -> requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, ChipsFragment.newInstance()).commit()
+
             android.R.id.home -> BottomNavigationDrawerFragment().show(
                 requireActivity().supportFragmentManager,
                 "BNDF"
@@ -127,9 +130,10 @@ class POTDFragment : Fragment() {
                     )
                 )
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-            }else{
-                isMain=true
-                binding.bottomAppBar.navigationIcon = ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
+            } else {
+                isMain = true
+                binding.bottomAppBar.navigationIcon =
+                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
                 binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
                 binding.fab.setImageDrawable(
                     ContextCompat.getDrawable(
