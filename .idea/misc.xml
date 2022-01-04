@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable-v24/bg_earth.xml" value="0.3592592592592593" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable-v24/ic_back_fab.xml" value="0.3592592592592593" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.21875" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable-v24/ic_load_error_vector.xml" value="0.3592592592592593" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable-v24/swipe_indicator_active.xml" value="0.33240740740740743" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable/ic_baseline_bug_report_24.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21875" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/drawable/icon_bg.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/font/aguafina_script.xml" value="0.3927083333333333" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/layout/bottom_navigation_layout.xml" value="0.3625" />
@@ -17,6 +22,8 @@
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/menu/menu_bottom_bar.xml" value="0.3625" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/menu/menu_bottom_bar_other_screen.xml" value="0.3625" />
         <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.3625" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/tashe/AndroidStudioProjects/AndroidMaterial/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.37864583333333335" />
       </map>
     </option>
   </component>

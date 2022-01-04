@@ -13,35 +13,35 @@ import retrofit2.Response
 class POTDViewModel(
     private val liveDataForViewToObserve: MutableLiveData<POTDState> = MutableLiveData(),
     private val retrofitImpl: POTDRetrofitImpl = POTDRetrofitImpl()
-):ViewModel() {
-    fun getData():LiveData<POTDState>{
+) : ViewModel() {
+    fun getData(): LiveData<POTDState> {
         return liveDataForViewToObserve
     }
 
-    fun sendServerRequest(){
+    fun sendServerRequest() {
         liveDataForViewToObserve.value = POTDState.Loading(0)
-        val apikey:String = BuildConfig.NASA_API_KEY
-        if (apikey.isBlank()){
+        val apikey: String = BuildConfig.NASA_API_KEY
+        if (apikey.isBlank()) {
             liveDataForViewToObserve.value = POTDState.Error(Throwable("wrong key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apikey).enqueue(callback)
         }
     }
 
-    private val callback = object : Callback<POTDResponseData>{
+    private val callback = object : Callback<POTDResponseData> {
         override fun onResponse(
             call: Call<POTDResponseData>,
             response: Response<POTDResponseData>
         ) {
-            if(response.isSuccessful&&response.body()!=null){
+            if (response.isSuccessful && response.body() != null) {
                 liveDataForViewToObserve.value = POTDState.Success(response.body()!!)
             } else {
-                //TODO("ошибка")
+                liveDataForViewToObserve.value = POTDState.Error(Throwable("NASA не ответило"))
             }
         }
 
         override fun onFailure(call: Call<POTDResponseData>, t: Throwable) {
-            //TODO("ошибка")
+            liveDataForViewToObserve.value = POTDState.Error(Throwable("NASA не ответило"))
         }
 
     }

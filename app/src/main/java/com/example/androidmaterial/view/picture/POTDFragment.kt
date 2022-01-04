@@ -51,13 +51,17 @@ class POTDFragment : Fragment() {
             })
         }
         val bsBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
+        binding.imageView.setOnClickListener {
+            bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }
         setBottomAppBar()
     }
 
     private fun renderData(state: POTDState) {
         when (state) {
             is POTDState.Error -> {
-                //TODO()
+                Toast.makeText(context, "Нет ответа от сервера :(", Toast.LENGTH_LONG).show()
+                binding.imageView.load(R.drawable.net_interneta)
             }
             is POTDState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
@@ -70,6 +74,10 @@ class POTDFragment : Fragment() {
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
                 }
+                binding.includeBottomSheet.bottomSheetDescriptionHeader.text =
+                    pictureOfTheDayResponseData.title
+                binding.includeBottomSheet.bottomSheetDescription.text =
+                    pictureOfTheDayResponseData.explanation
             }
         }
     }
@@ -79,7 +87,6 @@ class POTDFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        return super.onCreateView(inflater, container, savedInstanceState)
         _binding = PotdFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -101,7 +108,8 @@ class POTDFragment : Fragment() {
                 .show()
 
             R.id.appBarSettings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ChipsFragment.newInstance()).commit()
+                .replace(R.id.container, ChipsFragment.newInstance()).addToBackStack("Chips")
+                .commit()
 
             android.R.id.home -> BottomNavigationDrawerFragment().show(
                 requireActivity().supportFragmentManager,
