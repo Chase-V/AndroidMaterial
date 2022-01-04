@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navitionMenuOne"
+        android:icon="@drawable/ic_archive"
+        android:title="На первый экран"
+        />
+    <item
+        android:id="@+id/navitionMenuTwo"
+        android:icon="@drawable/ic_send"
+        android:title="На второй экран"
+        />
+
+</menu>
