@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +23,8 @@ import com.example.androidmaterial.viewModel.POTDViewModel
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class POTDFragment : Fragment() {
+
+class POTDFragment : Fragment(R.layout.potd_fragment) {
 
     private var _binding: PotdFragmentBinding? = null
     val binding: PotdFragmentBinding

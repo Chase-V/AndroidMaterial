@@ -23,4 +23,34 @@
 
     <color name="colorAccent">#FFD81B60</color>
     <color name="colorAccent40Alfa">#66D81B60</color>
+
+
+    <color name="marsPrimaryColor">#bb4d2b</color>
+    <color name="marsPrimaryLightColor">#f37c56</color>
+    <color name="marsPrimaryDarkColor">#851d00</color>
+    <color name="marsSecondaryColor">#ea4706</color>
+    <color name="marsSecondaryLightColor">#ff7a3c</color>
+    <color name="marsSecondaryDarkColor">#b00000</color>
+    <color name="marsPrimaryTextColor">#ffffff</color>
+    <color name="marsSecondaryTextColor">#000000</color>
+
+
+    <color name="uranusPrimaryColor">#0882cd</color>
+    <color name="uranusPrimaryLightColor">#5eb1ff</color>
+    <color name="uranusPrimaryDarkColor">#00569c</color>
+    <color name="uranusSecondaryColor">#aee4fc</color>
+    <color name="uranusSecondaryLightColor">#e1ffff</color>
+    <color name="uranusSecondaryDarkColor">#7db2c9</color>
+    <color name="uranusPrimaryTextColor">#000000</color>
+    <color name="uranusSecondaryTextColor">#000000</color>
+
+
+    <color name="mercuryPrimaryColor">#9e703c</color>
+    <color name="mercuryPrimaryLightColor">#d19e68</color>
+    <color name="mercuryPrimaryDarkColor">#6c4512</color>
+    <color name="mercurySecondaryColor">#ecd0a0</color>
+    <color name="mercurySecondaryLightColor">#ffffd1</color>
+    <color name="mercurySecondaryDarkColor">#b99f71</color>
+    <color name="mercuryPrimaryTextColor">#000000</color>
+    <color name="mercurySecondaryTextColor">#000000</color>
 </resources>

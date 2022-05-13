@@ -9,11 +9,13 @@ import com.example.androidmaterial.R
 import com.example.androidmaterial.databinding.BottomNavigationLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomNavigationDrawerFragment : BottomSheetDialogFragment(){
+class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
     private var _binding: BottomNavigationLayoutBinding? = null
     private val binding: BottomNavigationLayoutBinding
-    get() {return _binding!!}
+        get() {
+            return _binding!!
+        }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -24,7 +26,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment(){
         super.onViewCreated(view, savedInstanceState)
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
-            when(menuItem.itemId){
+            when (menuItem.itemId) {
                 R.id.navitionMenuOne -> {
                     Toast.makeText(context, "One", Toast.LENGTH_SHORT).show()
                 }

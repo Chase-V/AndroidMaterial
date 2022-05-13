@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:contentDescription="@string/photoOfTheDayStub"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_no_photo_vector" />
@@ -63,7 +64,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimary"
         app:fabAlignmentMode="center"
         app:navigationIcon="@drawable/ic_hamburger_menu_bottom_bar" />
 
@@ -71,9 +71,7 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
         app:layout_anchor="@id/bottomAppBar"
-        app:srcCompat="@drawable/ic_plus_fab"
-        app:tint="#FFFFFF" />
+        app:srcCompat="@drawable/ic_plus_fab" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,4 +8,16 @@
     <string name="settings">Настройки</string>
     <string name="search">Поиск</string>
     <string name="pressImageText">Нажмите на картинку для просмотра описания.</string>
+    <string name="example_text_default">Default</string>
+    <string name="example_text_entry">Entry</string>
+    <string name="example_text_choice">Choice</string>
+    <string name="example_text_action">Action</string>
+    <string name="example_text_filter">Filter</string>
+    <string name="theme_chooser_label">Тема приложения</string>
+    <string name="mars">Марс</string>
+    <string name="uranus">Уран</string>
+    <string name="mercury">Меркурий</string>
+    <string name="THEME_KEY">SomeThemeKey</string>
+    <string name="systemTheme">Системная</string>
+
 </resources>

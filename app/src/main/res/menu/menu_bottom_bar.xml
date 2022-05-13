@@ -7,12 +7,14 @@
         android:icon="@drawable/ic_favourite_menu"
         android:title="@string/favourite"
         app:showAsAction="ifRoom"
+        android:iconTint="?attr/colorOnSurface"
         />
     <item
         android:id="@+id/appBarSettings"
         android:icon="@drawable/ic_settings_menu"
         android:title="@string/settings"
         app:showAsAction="ifRoom"
+        android:iconTint="?attr/colorOnSurface"
         />
 
 
