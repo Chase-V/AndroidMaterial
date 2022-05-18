@@ -6,10 +6,8 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
@@ -111,9 +109,14 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
             R.id.appBarFav -> Toast.makeText(context, "Favourite selected", Toast.LENGTH_LONG)
                 .show()
 
-            R.id.appBarSettings -> requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ChipsFragment.newInstance()).addToBackStack("Chips")
-                .commit()
+            R.id.appBarSettings -> requireActivity().supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace(
+                    R.id.container,
+                    ChipsFragment.newInstance()
+                )
+                addToBackStack("Chips")
+            }
 
             android.R.id.home -> BottomNavigationDrawerFragment().show(
                 requireActivity().supportFragmentManager,
