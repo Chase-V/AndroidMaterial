@@ -30,4 +30,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun recreate() {
+        finish();
+        overridePendingTransition(
+            R.anim.fade_in,
+            R.anim.fade_out
+        )
+        startActivity(intent)
+        overridePendingTransition(
+            R.anim.slide_up,
+            R.anim.slide_down
+        )
+    }
+
 }

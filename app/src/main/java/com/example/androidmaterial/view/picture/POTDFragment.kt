@@ -1,14 +1,17 @@
 package com.example.androidmaterial.view.picture
 
+import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.androidmaterial.R
@@ -24,26 +27,51 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class POTDFragment : Fragment(R.layout.potd_fragment) {
 
+    companion object {
+        fun newInstance(): POTDFragment {
+            return POTDFragment()
+        }
+    }
+
     private var _binding: PotdFragmentBinding? = null
-    val binding: PotdFragmentBinding
+    private var isMain = true
+
+    private val binding: PotdFragmentBinding
         get() {
             return _binding!!
         }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 
     private val viewModel: POTDViewModel by lazy {
         ViewModelProvider(this).get(POTDViewModel::class.java)
     }
 
+    private var fragmentTheme :Int = -1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        fragmentTheme = getCurrentTheme()
+        Log.d(TAG, "onCreate: fragment $fragmentTheme")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getData().observe(viewLifecycleOwner, Observer {
+
+        if (fragmentTheme != getCurrentTheme()){
+            requireActivity().recreate()
+        }
+
+        val bsBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
+
+        if (bsBehavior.state == BottomSheetBehavior.STATE_EXPANDED){
+            requireActivity().onBackPressedDispatcher.addCallback {
+                bsBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+        }
+
+        viewModel.getData().observe(viewLifecycleOwner) {
             renderData(it)
-        })
+        }
+
         viewModel.sendServerRequest()
 
         binding.inputLayout.setEndIconOnClickListener {
@@ -52,10 +80,11 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
                     Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
             })
         }
-        val bsBehavior = BottomSheetBehavior.from(binding.includeBottomSheet.bottomSheetContainer)
+
         binding.imageView.setOnClickListener {
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
+
         setBottomAppBar()
     }
 
@@ -89,14 +118,10 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        requireActivity().setTheme(getCurrentTheme())
+        Log.d(TAG, "onCreateView: ")
         _binding = PotdFragmentBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    companion object {
-        fun newInstance(): POTDFragment {
-            return POTDFragment()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -109,14 +134,8 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
             R.id.appBarFav -> Toast.makeText(context, "Favourite selected", Toast.LENGTH_LONG)
                 .show()
 
-            R.id.appBarSettings -> requireActivity().supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace(
-                    R.id.container,
-                    ChipsFragment.newInstance()
-                )
-                addToBackStack("Chips")
-            }
+            R.id.appBarSettings -> startFragment(ChipsFragment.newInstance(), "Chips")
+
 
             android.R.id.home -> BottomNavigationDrawerFragment().show(
                 requireActivity().supportFragmentManager,
@@ -126,7 +145,39 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
         return super.onOptionsItemSelected(item)
     }
 
-    private var isMain = true
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    private fun getCurrentTheme(): Int {
+        return requireActivity().getPreferences(Context.MODE_PRIVATE)
+            .getInt(getString(R.string.THEME_KEY), -1)
+    }
+
+    private fun startFragment(fragment: Fragment, backstackTag: String) {
+
+        requireActivity().supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace(
+                R.id.container,
+                fragment
+            )
+            addToBackStack(backstackTag)
+        }
+
+    }
+
+    private fun recreateFragment(backstackTag: String) {
+        requireActivity().let {
+            it.supportFragmentManager.popBackStack()
+            it.supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                replace(R.id.container, newInstance(), backstackTag)
+                addToBackStack(backstackTag)
+            }
+        }
+    }
 
     private fun setBottomAppBar() {
         val context = activity as MainActivity
@@ -159,8 +210,5 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
                 binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
         }
-
-
     }
-
 }

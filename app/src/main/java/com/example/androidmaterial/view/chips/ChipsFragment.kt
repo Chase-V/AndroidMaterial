@@ -24,6 +24,7 @@ class ChipsFragment : Fragment(R.layout.chips_fragment) {
     }
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,30 +58,27 @@ class ChipsFragment : Fragment(R.layout.chips_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
-
         binding.chipGroup.setOnCheckedStateChangeListener { group, _ ->
 
             when (group.checkedChipId) {
                 R.id.chipMars -> {
                     setPrefs(getString(R.string.THEME_KEY), 1)
-                    recreateFragment()
+                    recreateFragment(newInstance(), "Chips")
                 }
 
                 R.id.chipMercury -> {
                     setPrefs(getString(R.string.THEME_KEY), 2)
-                    recreateFragment()
+                    recreateFragment(newInstance(), "Chips")
                 }
 
                 R.id.chipUranus -> {
                     setPrefs(getString(R.string.THEME_KEY), 3)
-                    requireActivity().let { requireActivity().recreate() }
+                    recreateFragment(newInstance(), "Chips")
                 }
 
                 R.id.chipDefault -> {
                     setPrefs(getString(R.string.THEME_KEY), 4)
-                    requireActivity().let { requireActivity().recreate() }
+                    recreateFragment(newInstance(), "Chips")
                 }
 
                 else -> {
@@ -96,11 +94,13 @@ class ChipsFragment : Fragment(R.layout.chips_fragment) {
         }
     }
 
-    private fun recreateFragment() {
+    private fun recreateFragment(fragment: Fragment, backstackTag: String) {
         requireActivity().let {
-            parentActivity.supportFragmentManager.commit {
+            it.supportFragmentManager.popBackStack()
+            it.supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                replace(R.id.container, newInstance())
+                replace(R.id.container, fragment, backstackTag)
+                addToBackStack(backstackTag)
             }
         }
     }
