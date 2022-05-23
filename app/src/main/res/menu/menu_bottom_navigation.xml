@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navitionMenuOne"
+        android:id="@+id/navigationMenuOne"
         android:icon="@drawable/ic_archive"
         android:title="На первый экран"
         />
     <item
-        android:id="@+id/navitionMenuTwo"
+        android:id="@+id/navigationMenuTwo"
         android:icon="@drawable/ic_send"
         android:title="На второй экран"
         />

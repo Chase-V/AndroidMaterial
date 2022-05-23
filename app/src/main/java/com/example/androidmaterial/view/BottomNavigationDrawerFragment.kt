@@ -27,10 +27,10 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.navitionMenuOne -> {
+                R.id.navigationMenuOne -> {
                     Toast.makeText(context, "One", Toast.LENGTH_SHORT).show()
                 }
-                R.id.navitionMenuTwo -> {
+                R.id.navigationMenuTwo -> {
                     Toast.makeText(context, "Two", Toast.LENGTH_SHORT).show()
                 }
             }

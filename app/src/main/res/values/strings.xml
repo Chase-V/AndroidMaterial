@@ -19,5 +19,6 @@
     <string name="mercury">Меркурий</string>
     <string name="THEME_KEY">SomeThemeKey</string>
     <string name="systemTheme">Системная</string>
+    <string name="fab_add">ADD</string>
 
 </resources>

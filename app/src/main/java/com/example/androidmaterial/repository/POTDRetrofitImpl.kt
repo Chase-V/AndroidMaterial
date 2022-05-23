@@ -6,6 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class POTDRetrofitImpl {
     private val baseUrl = "https://api.nasa.gov/"
+
     fun getRetrofitImpl():POTDayAPI{
 
         val retrofit = Retrofit.Builder()

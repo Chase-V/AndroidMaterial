@@ -34,7 +34,6 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
     }
 
     private var _binding: PotdFragmentBinding? = null
-    private var isMain = true
 
     private val binding: PotdFragmentBinding
         get() {
@@ -84,8 +83,6 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
         binding.imageView.setOnClickListener {
             bsBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
-
-        setBottomAppBar()
     }
 
     private fun renderData(state: POTDState) {
@@ -119,30 +116,8 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
         savedInstanceState: Bundle?
     ): View {
         requireActivity().setTheme(getCurrentTheme())
-        Log.d(TAG, "onCreateView: ")
         _binding = PotdFragmentBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_bottom_bar, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.appBarFav -> Toast.makeText(context, "Favourite selected", Toast.LENGTH_LONG)
-                .show()
-
-            R.id.appBarSettings -> startFragment(ChipsFragment.newInstance(), "Chips")
-
-
-            android.R.id.home -> BottomNavigationDrawerFragment().show(
-                requireActivity().supportFragmentManager,
-                "BNDF"
-            )
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -155,19 +130,6 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
             .getInt(getString(R.string.THEME_KEY), -1)
     }
 
-    private fun startFragment(fragment: Fragment, backstackTag: String) {
-
-        requireActivity().supportFragmentManager.commit {
-            setReorderingAllowed(true)
-            replace(
-                R.id.container,
-                fragment
-            )
-            addToBackStack(backstackTag)
-        }
-
-    }
-
     private fun recreateFragment(backstackTag: String) {
         requireActivity().let {
             it.supportFragmentManager.popBackStack()
@@ -175,39 +137,6 @@ class POTDFragment : Fragment(R.layout.potd_fragment) {
                 setReorderingAllowed(true)
                 replace(R.id.container, newInstance(), backstackTag)
                 addToBackStack(backstackTag)
-            }
-        }
-    }
-
-    private fun setBottomAppBar() {
-        val context = activity as MainActivity
-        context.setSupportActionBar(binding.bottomAppBar)
-        setHasOptionsMenu(true)
-
-        binding.fab.setOnClickListener {
-            if (isMain) {
-                isMain = false
-                binding.bottomAppBar.navigationIcon = null
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                binding.fab.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_back_fab
-                    )
-                )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar_other_screen)
-            } else {
-                isMain = true
-                binding.bottomAppBar.navigationIcon =
-                    ContextCompat.getDrawable(context, R.drawable.ic_hamburger_menu_bottom_bar)
-                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                binding.fab.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_plus_fab
-                    )
-                )
-                binding.bottomAppBar.replaceMenu(R.menu.menu_bottom_bar)
             }
         }
     }
